@@ -1,16 +1,14 @@
 footer {
   background-color: var(--footer-bg);
   color: var(--white);
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: var(--section-max-width);
-  padding: 32px 24px;
-}
-
 footer .footer > div:first-child {
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  padding: 30px 24px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
@@ -18,16 +16,30 @@ footer .footer > div:first-child {
 
 footer .footer > div:last-child {
   background-color: var(--footer-bottom-bg);
-  padding: 16px 24px;
   max-width: 100%;
+  padding: 20px 24px;
+}
+
+footer .footer > div:last-child > div {
+  max-width: var(--section-max-width);
+  margin: 0 auto;
 }
 
 footer .footer h4 {
   color: var(--white);
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   font-weight: 600;
-  margin: 0 0 12px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
   letter-spacing: normal;
+  line-height: 1.75;
+}
+
+footer .footer p {
+  margin: 0;
+  color: var(--white);
+  font-size: var(--body-font-size-s);
+  line-height: 1.75;
 }
 
 footer .footer ul {
@@ -37,30 +49,35 @@ footer .footer ul {
 }
 
 footer .footer li {
-  padding: 4px 0;
+  padding: 5px 0;
 }
 
 footer .footer a:any-link {
-  color: #e2e2e2;
+  color: var(--footer-link-color);
   text-decoration: none;
   font-size: var(--body-font-size-s);
+  font-weight: 400;
+  line-height: 1.75;
 }
 
 footer .footer a:any-link:hover {
-  color: var(--white);
+  color: var(--footer-hover-color);
   text-decoration: underline;
-}
-
-footer .footer p {
-  margin: 0;
-  color: #e2e2e2;
 }
 
 footer .footer > div:last-child ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 24px;
+  gap: 4px 16px;
   margin-top: 8px;
+}
+
+footer .footer > div:last-child a:any-link {
+  color: var(--white);
+}
+
+footer .footer > div:last-child a:any-link:hover {
+  color: var(--footer-hover-color);
 }
 
 @media (width >= 600px) {
@@ -70,16 +87,23 @@ footer .footer > div:last-child ul {
 }
 
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px;
-  }
-
   footer .footer > div:first-child {
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 35px;
+    padding: 30px 24px;
   }
 
   footer .footer > div:last-child {
-    padding: 16px 32px;
+    padding: 20px 24px;
+  }
+
+  footer .footer > div:last-child > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer .footer > div:last-child ul {
+    margin-top: 0;
   }
 }

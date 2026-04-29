@@ -11,6 +11,8 @@
   --white: #fff;
   --footer-bg: #585858;
   --footer-bottom-bg: #3d3d3d;
+  --footer-link-color: #e2e2e2;
+  --footer-hover-color: #64b0e4;
 
   /* fonts */
   --body-font-family: poppins, poppins-fallback, sans-serif;
