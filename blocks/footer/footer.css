@@ -62,6 +62,15 @@ footer .footer-bottom-inner {
   padding: 0 var(--content-gutter);
 }
 
+/* logo in footer bottom */
+footer .footer-bottom img {
+  width: 90px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  display: block;
+  margin-bottom: 12px;
+}
+
 footer .footer-bottom p {
   margin: 0;
   color: var(--white);
@@ -69,6 +78,7 @@ footer .footer-bottom p {
   line-height: 1.75;
 }
 
+/* policy links — below copyright, not to the right */
 footer .footer-bottom ul {
   list-style: none;
   padding: 0;
@@ -108,21 +118,11 @@ footer .footer-bottom a:any-link:hover {
   }
 }
 
-/* desktop: 4-column nav + inline copyright bar */
+/* desktop: 4-column nav + stacked copyright bar */
 @media (width >= 900px) {
   footer .footer-nav-inner {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 35px;
-  }
-
-  footer .footer-bottom-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  footer .footer-bottom ul {
-    margin-top: 0;
   }
 }
