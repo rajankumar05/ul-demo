@@ -1,71 +1,88 @@
+/* cards block — handles all 4 UL.com card layouts */
 .cards > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 30px;
 }
 
 .cards > ul > li {
-  background-color: var(--background-color);
+  background-color: transparent;
 }
 
 .cards .cards-card-body {
-  padding: 8px 0;
+  padding: 0;
 }
 
-.cards .cards-card-body p {
-  margin: 0.4em 0;
-  color: var(--text-color);
-  font-size: var(--body-font-size-m);
-  line-height: 1.66;
-}
-
+/* card title — rendered as <strong> by parser */
 .cards .cards-card-body strong {
   display: block;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l);
   font-weight: 400;
   line-height: 1.4;
   color: var(--text-color);
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
+/* card description text */
+.cards .cards-card-body p {
+  margin: 0 0 15px;
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  line-height: 1.66;
+}
+
+/* card image */
 .cards .cards-card-image {
   line-height: 0;
 }
 
 .cards > ul > li img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: cover;
+  display: block;
 }
 
+/* card inline links — red, no underline */
 .cards .cards-card-body a {
   color: var(--link-color);
   text-decoration: none;
   font-size: var(--body-font-size-m);
+  font-weight: 400;
 }
 
 .cards .cards-card-body a:hover {
   text-decoration: underline;
 }
 
+/* card CTA buttons — red outline */
 .cards .cards-card-body a.button:any-link {
-  border-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
   color: var(--accent-color);
   background-color: transparent;
   font-size: var(--body-font-size-s);
+  font-weight: 400;
+  letter-spacing: 1.4px;
   padding: 12px 24px;
   border-radius: 4px;
   margin-top: 8px;
-  display: inline-flex;
+  display: block;
+  text-align: center;
+  transition: 0.3s ease-out;
 }
 
 .cards .cards-card-body a.button:any-link:hover {
   background-color: var(--accent-color);
+  border-color: var(--accent-color);
   color: var(--white);
 }
 
+/* responsive grid — mobile: 1 col, tablet: 2 col, desktop: 2 col */
 @media (width >= 600px) {
   .cards > ul {
     grid-template-columns: repeat(2, 1fr);
@@ -75,12 +92,53 @@
 @media (width >= 900px) {
   .cards > ul {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 30px;
+  }
+
+  /* icon-style cards (services): smaller images */
+  .cards > ul > li img[width="80"],
+  .cards > ul > li img[alt*="Icon"],
+  .cards > ul > li img[alt*="icon"] {
+    width: 53px;
+    height: 53px;
+    object-fit: contain;
   }
 }
 
+/* 3-column layout for certification spotlight cards */
+@media (width >= 900px) {
+  .cards.cards-3-col > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 4-column layout for Inside UL cards */
 @media (width >= 1200px) {
   .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards.cards-4-col > ul {
     grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  .cards.cards-4-col .cards-card-body strong {
+    font-size: var(--heading-font-size-m);
+  }
+
+  .cards.cards-4-col .cards-card-body p {
+    font-size: var(--body-font-size-s);
+    line-height: 1.66;
+  }
+
+  .cards.cards-4-col > ul > li img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .cards.cards-4-col .cards-card-body {
+    padding: 24px 22px;
   }
 }

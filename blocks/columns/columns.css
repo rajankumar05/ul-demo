@@ -1,3 +1,4 @@
+/* columns block — handles expert CTA, video section, customer resources */
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -20,54 +21,75 @@
   display: block;
 }
 
+/* headings */
 .columns h2 {
   font-size: var(--heading-font-size-xl);
   font-weight: 300;
   line-height: 1.3;
+  letter-spacing: 1px;
+  color: var(--text-color);
+  margin-bottom: 15px;
 }
 
 .columns h3 {
   font-size: var(--heading-font-size-l);
   font-weight: 400;
   line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--text-color);
   margin-top: 0;
+  margin-bottom: 10px;
 }
 
+/* body text */
 .columns p {
   color: var(--text-color);
   font-size: var(--body-font-size-m);
+  font-weight: 400;
   line-height: 1.66;
+  margin: 0 0 15px;
 }
 
+/* inline links — red */
 .columns a:any-link {
   color: var(--link-color);
   text-decoration: none;
+  font-weight: 400;
 }
 
 .columns a:any-link:hover {
   text-decoration: underline;
 }
 
+/* black outline button — for expert CTA "Meet the experts" */
 .columns a.button:any-link {
-  border-color: var(--black);
+  border: 1px solid var(--black);
   color: var(--black);
   background-color: transparent;
   padding: 12px 48px;
   font-size: var(--body-font-size-s);
+  font-weight: 400;
   letter-spacing: 1.4px;
+  line-height: 1.3;
   border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: 0.3s ease-out;
 }
 
 .columns a.button:any-link:hover {
   background-color: var(--black);
+  border-color: var(--black);
   color: var(--white);
 }
 
+/* desktop: side-by-side columns */
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
     flex-direction: row;
-    gap: 32px;
+    gap: 30px;
   }
 
   .columns > div > div {
