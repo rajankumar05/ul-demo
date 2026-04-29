@@ -1,4 +1,9 @@
 /* video-text block — 50/50 split: video left, text right */
+main > .section.light-gray.video-text-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .video-text-container .video-text-wrapper {
   max-width: var(--section-max-width);
   margin: 0 auto;
