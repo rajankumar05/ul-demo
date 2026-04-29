@@ -67,9 +67,9 @@
   padding-top: 15px;
 }
 
-/* CTA — red outline button, block display */
+/* CTA — red outline button, left-aligned */
 .feature-cards .feature-card-body a:any-link {
-  display: block;
+  display: inline-block;
   border: 1px solid var(--accent-color);
   border-radius: 4px;
   color: var(--accent-color);
