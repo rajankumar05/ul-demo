@@ -1,6 +1,7 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 .columns img {
@@ -19,11 +20,54 @@
   display: block;
 }
 
+.columns h2 {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.columns h3 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+.columns p {
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.66;
+}
+
+.columns a:any-link {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.columns a:any-link:hover {
+  text-decoration: underline;
+}
+
+.columns a.button:any-link {
+  border-color: var(--black);
+  color: var(--black);
+  background-color: transparent;
+  padding: 12px 48px;
+  font-size: var(--body-font-size-s);
+  letter-spacing: 1.4px;
+  border-radius: 4px;
+}
+
+.columns a.button:any-link:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
+    gap: 32px;
   }
 
   .columns > div > div {

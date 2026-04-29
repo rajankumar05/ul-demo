@@ -1,0 +1,24 @@
+{
+  "status": "success",
+  "url": "https://www.ul.com/",
+  "path": "index",
+  "timestamp": "2026-04-29T01:40:01.161Z",
+  "title": "UL Solutions",
+  "template": "homepage",
+  "blocks": [
+    "hero",
+    "cards",
+    "cards",
+    "cards",
+    "cards",
+    "cards",
+    "cards",
+    "cards",
+    "cards",
+    "cards",
+    "cards",
+    "columns",
+    "columns",
+    "columns"
+  ]
+}
