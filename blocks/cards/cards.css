@@ -1,4 +1,4 @@
-/* cards block — handles all 4 UL.com card layouts */
+/* cards block */
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -8,26 +8,49 @@
   gap: 30px;
 }
 
+/* each card — horizontal layout: image left, text right */
 .cards > ul > li {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
   background-color: transparent;
 }
 
+/* card image — left column, ~33% width */
+.cards .cards-card-image {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+  line-height: 0;
+}
+
+.cards > ul > li img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 360 / 280;
+}
+
+/* card body — right column, ~67% width */
 .cards .cards-card-body {
+  flex: 1 1 0;
   padding: 0;
 }
 
-/* card title — rendered as <strong> by parser */
+/* card title — h3 equivalent, rendered as <strong> */
 .cards .cards-card-body strong {
   display: block;
   font-family: var(--heading-font-family);
   font-size: var(--heading-font-size-l);
   font-weight: 400;
   line-height: 1.4;
+  letter-spacing: normal;
   color: var(--text-color);
   margin-bottom: 10px;
 }
 
-/* card description text */
+/* card description */
 .cards .cards-card-body p {
   margin: 0 0 15px;
   color: var(--text-color);
@@ -36,19 +59,7 @@
   line-height: 1.66;
 }
 
-/* card image */
-.cards .cards-card-image {
-  line-height: 0;
-}
-
-.cards > ul > li img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
-
-/* card inline links — red, no underline */
+/* card CTA — red text link, not a button */
 .cards .cards-card-body a {
   color: var(--link-color);
   text-decoration: none;
@@ -60,7 +71,7 @@
   text-decoration: underline;
 }
 
-/* card CTA buttons — red outline */
+/* override button styling for inline red links */
 .cards .cards-card-body a.button:any-link {
   border: 1px solid var(--accent-color);
   color: var(--accent-color);
@@ -70,7 +81,6 @@
   letter-spacing: 1.4px;
   padding: 12px 24px;
   border-radius: 4px;
-  margin-top: 8px;
   display: block;
   text-align: center;
   transition: 0.3s ease-out;
@@ -82,63 +92,40 @@
   color: var(--white);
 }
 
-/* responsive grid — mobile: 1 col, tablet: 2 col, desktop: 2 col */
-@media (width >= 600px) {
-  .cards > ul {
-    grid-template-columns: repeat(2, 1fr);
+/* mobile: stack vertically on small screens */
+@media (width < 600px) {
+  .cards > ul > li {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cards .cards-card-image {
+    flex: none;
+    max-width: 100%;
   }
 }
 
+/* tablet: 1 column, horizontal cards */
+@media (width >= 600px) {
+  .cards > ul {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* desktop: 2-column grid, horizontal cards */
 @media (width >= 900px) {
   .cards > ul {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
 
-  /* icon-style cards (services): smaller images */
-  .cards > ul > li img[width="80"],
-  .cards > ul > li img[alt*="Icon"],
-  .cards > ul > li img[alt*="icon"] {
-    width: 53px;
-    height: 53px;
-    object-fit: contain;
-  }
-}
-
-/* 3-column layout for certification spotlight cards */
-@media (width >= 900px) {
-  .cards.cards-3-col > ul {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* 4-column layout for Inside UL cards */
-@media (width >= 1200px) {
-  .cards > ul {
-    grid-template-columns: repeat(2, 1fr);
+  .cards .cards-card-image {
+    flex: 0 0 33.333%;
+    max-width: 237px;
   }
 
-  .cards.cards-4-col > ul {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-  }
-
-  .cards.cards-4-col .cards-card-body strong {
-    font-size: var(--heading-font-size-m);
-  }
-
-  .cards.cards-4-col .cards-card-body p {
-    font-size: var(--body-font-size-s);
-    line-height: 1.66;
-  }
-
-  .cards.cards-4-col > ul > li img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-  }
-
-  .cards.cards-4-col .cards-card-body {
-    padding: 24px 22px;
+  .cards > ul > li img {
+    aspect-ratio: 360 / 280;
   }
 }
