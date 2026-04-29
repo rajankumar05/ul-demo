@@ -323,6 +323,13 @@ main > .section:first-of-type {
   padding-top: 0;
 }
 
+/* centered section intro — heading + subtitle above blocks (UL.com pattern) */
+main .section > .default-content-wrapper:first-child:has(+ .cards-wrapper) {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 20px;
+}
+
 /* section metadata — light-gray background */
 main .section.light,
 main .section.highlight,
