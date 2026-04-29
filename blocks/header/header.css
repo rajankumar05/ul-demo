@@ -6,6 +6,89 @@ header .nav-wrapper {
   position: fixed;
   border-bottom: 1px solid #d0d0d0;
   box-shadow: 0 2px 4px -1px rgb(0 0 0 / 12.5%);
+  transform: translateZ(0);
+  transition: transform 0.5s;
+  will-change: transform;
+}
+
+/* auto-hide on scroll down */
+header .nav-wrapper.is-hidden {
+  transform: translateY(-100%);
+  transition: transform 0.6s;
+}
+
+/* sticky CTA bar */
+header .sticky-cta-bar {
+  display: none;
+  position: fixed;
+  top: 61px;
+  width: 100%;
+  z-index: 6;
+  background-color: var(--background-color);
+  border-bottom: 1px solid #d0d0d0;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 12.5%);
+  transform: translateY(-1px);
+  transition: transform 0.6s;
+  will-change: transform;
+}
+
+header .sticky-cta-bar.fixed {
+  display: block;
+}
+
+header .sticky-cta-bar.slide-up {
+  transform: translateY(calc(-100% - 61px));
+}
+
+header .sticky-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+
+header .sticky-cta-title {
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1 1 70%;
+  line-height: 1.4;
+}
+
+header .sticky-cta-button {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+header .sticky-cta-link {
+  display: inline-block;
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  color: var(--white);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  padding: 12px 48px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+}
+
+header .sticky-cta-link:hover {
+  background-color: #97011a;
+  border-color: #97011a;
+  color: var(--white);
 }
 
 header nav {
@@ -34,7 +117,7 @@ header nav[aria-expanded='true'] {
 
 @media (width >= 900px) {
   header .nav-wrapper {
-    position: sticky;
+    position: fixed;
     top: 0;
   }
 
