@@ -108,20 +108,12 @@ footer .footer-bottom a:any-link:hover {
   }
 }
 
-/* desktop: 4-column nav (70% width, left-aligned) + inline copyright bar */
+/* desktop: 4-column nav + inline copyright bar */
 @media (width >= 900px) {
   footer .footer-nav-inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 35px;
-    max-width: 70%;
-    margin: 0;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 var(--content-gutter);
-  }
-
-  footer .footer-nav-inner > div {
-    flex: 0 1 auto;
   }
 
   footer .footer-bottom-inner {
