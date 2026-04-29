@@ -318,9 +318,10 @@ main > .section > div {
   padding: 0 var(--content-gutter);
 }
 
+/* hero section — no padding, full bleed */
 main > .section:first-of-type {
   margin-top: 0;
-  padding-top: 0;
+  padding: 0;
 }
 
 /* centered section intro — heading + subtitle above blocks (UL.com pattern) */
@@ -336,6 +337,20 @@ main .section.light-gray {
   background-color: var(--light-color);
   margin: 0;
   padding: 20px 0;
+}
+
+/* remove double padding between consecutive same-bg sections */
+main .section.light-gray + .section.light-gray {
+  padding-top: 0;
+}
+
+/* prevent margin collapse leaking out when section has no padding-top */
+main .section.light-gray + .section.light-gray > :first-child {
+  margin-top: 0;
+}
+
+main .section.light-gray + .section.light-gray > :first-child > :first-child {
+  margin-top: 0;
 }
 
 main .section.dark {
