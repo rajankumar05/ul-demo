@@ -369,6 +369,46 @@ var CustomImportScript = (() => {
     element.replaceWith(wrapper);
   }
 
+  // tools/importer/parsers/spotlight-cards.js
+  function parse6(element, { document }) {
+    const cells = [];
+    const cards = element.querySelectorAll(".card--spotlight");
+    cards.forEach((card) => {
+      const img = card.querySelector("img");
+      const title = card.querySelector("h2, h3, h4, h5");
+      const descPs = Array.from(card.querySelectorAll("p")).filter(
+        (p) => !p.querySelector("a") && p.textContent.trim()
+      );
+      const ctaLink = card.querySelector("a");
+      const iconCell = document.createElement("div");
+      if (img) iconCell.append(img);
+      const bodyCell = document.createElement("div");
+      if (title) {
+        const p = document.createElement("p");
+        const strong = document.createElement("strong");
+        strong.textContent = title.textContent.trim();
+        p.append(strong);
+        bodyCell.append(p);
+      }
+      descPs.forEach((dp) => {
+        const p = document.createElement("p");
+        p.textContent = dp.textContent.trim();
+        bodyCell.append(p);
+      });
+      if (ctaLink) {
+        const a = document.createElement("a");
+        a.href = ctaLink.getAttribute("href") || "";
+        a.textContent = ctaLink.textContent.trim();
+        const p = document.createElement("p");
+        p.append(a);
+        bodyCell.append(p);
+      }
+      cells.push([iconCell, bodyCell]);
+    });
+    const block = WebImporter.Blocks.createBlock(document, { name: "spotlight-cards", cells });
+    element.replaceWith(block);
+  }
+
   // tools/importer/transformers/ul-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
@@ -471,7 +511,8 @@ var CustomImportScript = (() => {
     "cards": parse2,
     "columns": parse3,
     "service-grid": parse4,
-    "video-text": parse5
+    "video-text": parse5,
+    "spotlight-cards": parse6
   };
   var PAGE_TEMPLATE = {
     name: "homepage",
@@ -493,10 +534,15 @@ var CustomImportScript = (() => {
         ]
       },
       {
+        name: "spotlight-cards",
+        instances: [
+          ".spotlight--cards"
+        ]
+      },
+      {
         name: "cards",
         instances: [
           ".editor-template.flex-grid:has(.grid-item--half)",
-          ".spotlight--cards",
           ".section--related-content"
         ]
       },
@@ -560,7 +606,7 @@ var CustomImportScript = (() => {
         name: "Certification Information",
         selector: "#block-ul-com-theme-mainpagecontent > section:nth-child(5)",
         style: "light-gray",
-        blocks: ["cards"],
+        blocks: ["spotlight-cards"],
         defaultContent: ["h2"]
       },
       {

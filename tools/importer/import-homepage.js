@@ -6,6 +6,7 @@ import cardsParser from './parsers/cards.js';
 import columnsParser from './parsers/columns.js';
 import serviceGridParser from './parsers/service-grid.js';
 import videoTextParser from './parsers/video-text.js';
+import spotlightCardsParser from './parsers/spotlight-cards.js';
 
 import ulCleanupTransformer from './transformers/ul-cleanup.js';
 import ulSectionsTransformer from './transformers/ul-sections.js';
@@ -16,6 +17,7 @@ const parsers = {
   'columns': columnsParser,
   'service-grid': serviceGridParser,
   'video-text': videoTextParser,
+  'spotlight-cards': spotlightCardsParser,
 };
 
 const PAGE_TEMPLATE = {
@@ -38,10 +40,15 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
+      name: 'spotlight-cards',
+      instances: [
+        '.spotlight--cards'
+      ]
+    },
+    {
       name: 'cards',
       instances: [
         '.editor-template.flex-grid:has(.grid-item--half)',
-        '.spotlight--cards',
         '.section--related-content'
       ]
     },
@@ -105,7 +112,7 @@ const PAGE_TEMPLATE = {
       name: 'Certification Information',
       selector: '#block-ul-com-theme-mainpagecontent > section:nth-child(5)',
       style: 'light-gray',
-      blocks: ['cards'],
+      blocks: ['spotlight-cards'],
       defaultContent: ['h2']
     },
     {
