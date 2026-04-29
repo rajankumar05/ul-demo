@@ -414,12 +414,15 @@ var CustomImportScript = (() => {
     const cells = [];
     const cards = element.querySelectorAll(".card--spotlight");
     cards.forEach((card) => {
-      const img = card.querySelector("img");
-      const title = card.querySelector("h2, h3, h4, h5");
-      const descPs = Array.from(card.querySelectorAll("p")).filter(
+      const img = card.querySelector(".image-container img, article img");
+      const title = card.querySelector(".content-container h2, .content-container h3, .content-container h4, .content-container h5");
+      const contentContainer = card.querySelector(".content-container");
+      const descPs = contentContainer ? Array.from(contentContainer.querySelectorAll("p")).filter(
         (p) => !p.querySelector("a") && p.textContent.trim()
-      );
-      const ctaLink = card.querySelector("a[href]");
+      ) : [];
+      const ctaLinks = contentContainer ? Array.from(contentContainer.querySelectorAll("a")).filter(
+        (a) => a.textContent.trim()
+      ) : [];
       const imgCell = document.createElement("div");
       if (img) imgCell.append(img);
       const bodyCell = document.createElement("div");
@@ -435,10 +438,11 @@ var CustomImportScript = (() => {
         p.textContent = dp.textContent.trim();
         bodyCell.append(p);
       });
-      if (ctaLink) {
+      if (ctaLinks.length > 0) {
+        const link = ctaLinks[ctaLinks.length - 1];
         const a = document.createElement("a");
-        a.href = ctaLink.getAttribute("href") || "";
-        a.textContent = ctaLink.textContent.trim();
+        a.href = link.getAttribute("href") || "";
+        a.textContent = link.textContent.trim();
         const p = document.createElement("p");
         p.append(a);
         bodyCell.append(p);

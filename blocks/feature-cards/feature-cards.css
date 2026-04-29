@@ -11,9 +11,13 @@
   gap: 15px;
 }
 
+/* each card — white bg, border, 60px bottom padding like spotlight-cards */
 .feature-cards .feature-card {
   display: flex;
   flex-direction: column;
+  background-color: var(--white);
+  border: 1px solid #e2e2e2;
+  padding-bottom: 60px;
 }
 
 /* image header — gray placeholder bg, fixed height, cover */
@@ -35,6 +39,7 @@
   padding: 24px 22px;
 }
 
+/* title — h4 size */
 .feature-cards .feature-card-body strong {
   display: block;
   font-family: var(--heading-font-family);
@@ -45,6 +50,7 @@
   margin-bottom: 10px;
 }
 
+/* description */
 .feature-cards .feature-card-body p {
   font-size: var(--body-font-size-s);
   font-weight: 400;
@@ -53,16 +59,35 @@
   margin: 0 0 15px;
 }
 
+/* CTA — red outline button, block display */
 .feature-cards .feature-card-body a:any-link {
-  color: var(--link-color);
+  display: block;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  color: var(--accent-color);
+  background-color: transparent;
+  padding: 12px 24px;
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
   font-weight: 400;
+  letter-spacing: 1.4px;
+  line-height: 1.3;
+  text-align: center;
   text-decoration: none;
-  display: block;
+  transition: 0.3s ease-out;
 }
 
 .feature-cards .feature-card-body a:any-link:hover {
-  text-decoration: underline;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* h2 spacing for "Inside UL Solutions" heading above the block */
+.feature-cards-container > .default-content-wrapper h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 /* tablet: 2 columns */
