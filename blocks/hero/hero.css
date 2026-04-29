@@ -141,6 +141,7 @@
   }
 
   .hero .hero-content {
+    box-sizing: border-box;
     max-width: 60%;
     padding: 45px 60px;
     position: relative;
