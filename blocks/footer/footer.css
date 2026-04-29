@@ -24,12 +24,17 @@ footer .footer-nav-inner {
   gap: 24px;
 }
 
+/* each nav column */
+footer .footer-nav-inner > div {
+  padding: 2px 10px 0 0;
+}
+
 footer .footer-nav h4 {
   color: var(--white);
   font-size: var(--body-font-size-s);
   font-weight: 600;
   text-transform: uppercase;
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   letter-spacing: normal;
   line-height: 1.75;
 }
@@ -41,7 +46,7 @@ footer .footer-nav ul {
 }
 
 footer .footer-nav li {
-  padding: 5px 0;
+  padding: 5px 10px 5px 0;
 }
 
 /* bottom copyright section — #3d3d3d darker gray */
@@ -70,7 +75,7 @@ footer .footer-bottom ul {
   margin: 8px 0 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 16px;
+  gap: 4px 15px;
 }
 
 /* all footer links — base + color per section */
@@ -103,11 +108,20 @@ footer .footer-bottom a:any-link:hover {
   }
 }
 
-/* desktop: 4-column nav + inline copyright bar */
+/* desktop: 4-column nav (70% width, left-aligned) + inline copyright bar */
 @media (width >= 900px) {
   footer .footer-nav-inner {
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
     gap: 35px;
+    max-width: 70%;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--content-gutter);
+  }
+
+  footer .footer-nav-inner > div {
+    flex: 0 1 auto;
   }
 
   footer .footer-bottom-inner {
