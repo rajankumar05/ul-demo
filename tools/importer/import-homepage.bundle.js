@@ -409,6 +409,46 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
+  // tools/importer/parsers/feature-cards.js
+  function parse7(element, { document }) {
+    const cells = [];
+    const cards = element.querySelectorAll(".card--spotlight");
+    cards.forEach((card) => {
+      const img = card.querySelector("img");
+      const title = card.querySelector("h2, h3, h4, h5");
+      const descPs = Array.from(card.querySelectorAll("p")).filter(
+        (p) => !p.querySelector("a") && p.textContent.trim()
+      );
+      const ctaLink = card.querySelector("a[href]");
+      const imgCell = document.createElement("div");
+      if (img) imgCell.append(img);
+      const bodyCell = document.createElement("div");
+      if (title) {
+        const p = document.createElement("p");
+        const strong = document.createElement("strong");
+        strong.textContent = title.textContent.trim();
+        p.append(strong);
+        bodyCell.append(p);
+      }
+      descPs.forEach((dp) => {
+        const p = document.createElement("p");
+        p.textContent = dp.textContent.trim();
+        bodyCell.append(p);
+      });
+      if (ctaLink) {
+        const a = document.createElement("a");
+        a.href = ctaLink.getAttribute("href") || "";
+        a.textContent = ctaLink.textContent.trim();
+        const p = document.createElement("p");
+        p.append(a);
+        bodyCell.append(p);
+      }
+      cells.push([imgCell, bodyCell]);
+    });
+    const block = WebImporter.Blocks.createBlock(document, { name: "feature-cards", cells });
+    element.replaceWith(block);
+  }
+
   // tools/importer/transformers/ul-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
@@ -512,7 +552,8 @@ var CustomImportScript = (() => {
     "columns": parse3,
     "service-grid": parse4,
     "video-text": parse5,
-    "spotlight-cards": parse6
+    "spotlight-cards": parse6,
+    "feature-cards": parse7
   };
   var PAGE_TEMPLATE = {
     name: "homepage",
@@ -540,10 +581,15 @@ var CustomImportScript = (() => {
         ]
       },
       {
+        name: "feature-cards",
+        instances: [
+          ".section--related-content"
+        ]
+      },
+      {
         name: "cards",
         instances: [
-          ".editor-template.flex-grid:has(.grid-item--half)",
-          ".section--related-content"
+          ".editor-template.flex-grid:has(.grid-item--half)"
         ]
       },
       {
@@ -622,7 +668,7 @@ var CustomImportScript = (() => {
         name: "Inside UL Solutions",
         selector: "#block-ul-com-theme-mainpagecontent > section:nth-child(7)",
         style: null,
-        blocks: ["cards"],
+        blocks: ["feature-cards"],
         defaultContent: ["h2"]
       }
     ]

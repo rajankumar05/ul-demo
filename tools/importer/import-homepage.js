@@ -7,6 +7,7 @@ import columnsParser from './parsers/columns.js';
 import serviceGridParser from './parsers/service-grid.js';
 import videoTextParser from './parsers/video-text.js';
 import spotlightCardsParser from './parsers/spotlight-cards.js';
+import featureCardsParser from './parsers/feature-cards.js';
 
 import ulCleanupTransformer from './transformers/ul-cleanup.js';
 import ulSectionsTransformer from './transformers/ul-sections.js';
@@ -18,6 +19,7 @@ const parsers = {
   'service-grid': serviceGridParser,
   'video-text': videoTextParser,
   'spotlight-cards': spotlightCardsParser,
+  'feature-cards': featureCardsParser,
 };
 
 const PAGE_TEMPLATE = {
@@ -46,10 +48,15 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
+      name: 'feature-cards',
+      instances: [
+        '.section--related-content'
+      ]
+    },
+    {
       name: 'cards',
       instances: [
-        '.editor-template.flex-grid:has(.grid-item--half)',
-        '.section--related-content'
+        '.editor-template.flex-grid:has(.grid-item--half)'
       ]
     },
     {
@@ -128,7 +135,7 @@ const PAGE_TEMPLATE = {
       name: 'Inside UL Solutions',
       selector: '#block-ul-com-theme-mainpagecontent > section:nth-child(7)',
       style: null,
-      blocks: ['cards'],
+      blocks: ['feature-cards'],
       defaultContent: ['h2']
     }
   ]
