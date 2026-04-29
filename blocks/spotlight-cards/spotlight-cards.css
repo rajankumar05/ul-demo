@@ -1,3 +1,16 @@
+/* spotlight section — restore padding even after consecutive light-gray */
+main > .section.light-gray.spotlight-cards-container,
+main .section.light-gray + .section.light-gray.spotlight-cards-container {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+/* h2 spacing above the cards block */
+.spotlight-cards-container > .default-content-wrapper h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 /* spotlight-cards — 3-col vertical cards with icon, title, desc, CTA button */
 .spotlight-cards-container .spotlight-cards-wrapper {
   max-width: var(--section-max-width);
