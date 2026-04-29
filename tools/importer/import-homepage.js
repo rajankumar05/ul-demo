@@ -4,6 +4,7 @@
 import heroParser from './parsers/hero.js';
 import cardsParser from './parsers/cards.js';
 import columnsParser from './parsers/columns.js';
+import serviceGridParser from './parsers/service-grid.js';
 
 import ulCleanupTransformer from './transformers/ul-cleanup.js';
 import ulSectionsTransformer from './transformers/ul-sections.js';
@@ -12,6 +13,7 @@ const parsers = {
   'hero': heroParser,
   'cards': cardsParser,
   'columns': columnsParser,
+  'service-grid': serviceGridParser,
 };
 
 const PAGE_TEMPLATE = {
@@ -28,10 +30,15 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
+      name: 'service-grid',
+      instances: [
+        '.editor-template.flex-grid:has(.grid-item--thirty)'
+      ]
+    },
+    {
       name: 'cards',
       instances: [
         '.editor-template.flex-grid:has(.grid-item--half)',
-        '.grid-item--seventy',
         '.spotlight--cards',
         '.section--related-content'
       ]
@@ -75,8 +82,8 @@ const PAGE_TEMPLATE = {
       name: 'Services Grid',
       selector: '#block-ul-com-theme-mainpagecontent > section:nth-child(3)',
       style: null,
-      blocks: ['cards'],
-      defaultContent: ['h2', 'p']
+      blocks: ['service-grid'],
+      defaultContent: []
     },
     {
       id: 'section-5-video',
