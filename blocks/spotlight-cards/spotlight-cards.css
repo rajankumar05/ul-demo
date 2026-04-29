@@ -11,10 +11,14 @@
   gap: 30px;
 }
 
+/* each card — white bg, border, bottom padding */
 .spotlight-cards .spotlight-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: var(--white);
+  border: 1px solid #e2e2e2;
+  padding: 24px 24px 60px;
 }
 
 /* icon — 80x80px */
@@ -53,9 +57,9 @@
   margin: 0 0 15px;
 }
 
-/* CTA — red outline button, full-width */
+/* CTA — red outline button, auto width (not full-width) */
 .spotlight-cards .spotlight-card-body a:any-link {
-  display: block;
+  display: inline-block;
   border: 1px solid var(--accent-color);
   border-radius: 4px;
   color: var(--accent-color);
