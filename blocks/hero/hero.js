@@ -21,6 +21,12 @@ export default function decorate(block) {
 
   const imageLayer = document.createElement('div');
   imageLayer.className = 'hero-image';
+  if (img) {
+    img.setAttribute('loading', 'eager');
+    img.setAttribute('fetchpriority', 'high');
+    if (!img.getAttribute('width')) img.setAttribute('width', '1920');
+    if (!img.getAttribute('height')) img.setAttribute('height', '380');
+  }
   if (picture && picture.tagName === 'PICTURE') {
     imageLayer.append(picture);
   } else if (img) {
