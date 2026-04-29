@@ -308,6 +308,67 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
+  // tools/importer/parsers/video-text.js
+  function parse5(element, { document }) {
+    const cells = [];
+    const videoSide = element.querySelector(".span-12.span-6-t, .span-6-t");
+    const textSide = element.querySelector(".section__content, .section__description");
+    const videoCell = document.createElement("div");
+    const textCell = document.createElement("div");
+    if (videoSide) {
+      const wistiaDiv = element.querySelector('.wistia_embed[class*="wistia_async_"]');
+      const videoSource = element.querySelector("video source[src]");
+      const videoEl = element.querySelector("video[src]");
+      let videoUrl = "";
+      if (wistiaDiv) {
+        const classList = wistiaDiv.getAttribute("class") || "";
+        const match = classList.match(/wistia_async_([a-z0-9]+)/);
+        if (match) videoUrl = "https://fast.wistia.net/embed/iframe/" + match[1];
+      } else if (videoSource) {
+        videoUrl = videoSource.getAttribute("src");
+      } else if (videoEl) {
+        videoUrl = videoEl.getAttribute("src");
+      }
+      if (videoUrl) {
+        const a = document.createElement("a");
+        a.href = videoUrl;
+        a.textContent = videoUrl;
+        videoCell.append(a);
+      }
+    }
+    if (textSide) {
+      const editorContent = textSide.querySelector(".editor-content");
+      const source = editorContent || textSide;
+      const headings = source.querySelectorAll("h1, h2, h3, h4");
+      headings.forEach((h) => {
+        if (h.textContent.trim()) {
+          const heading = document.createElement("h2");
+          heading.textContent = h.textContent.trim();
+          textCell.append(heading);
+        }
+      });
+      const paragraphs = source.querySelectorAll("p");
+      paragraphs.forEach((p) => {
+        const text = p.textContent.trim();
+        if (text && text !== " ") {
+          const para = document.createElement("p");
+          para.textContent = text;
+          textCell.append(para);
+        }
+      });
+    }
+    cells.push([videoCell, textCell]);
+    const hr = document.createElement("hr");
+    const block = WebImporter.Blocks.createBlock(document, { name: "video-text", cells });
+    const sectionMeta = WebImporter.Blocks.createBlock(document, {
+      name: "Section Metadata",
+      cells: { style: "light-gray" }
+    });
+    const wrapper = document.createElement("div");
+    wrapper.append(hr, block, sectionMeta);
+    element.replaceWith(wrapper);
+  }
+
   // tools/importer/transformers/ul-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
   function transform(hookName, element, payload) {
@@ -409,7 +470,8 @@ var CustomImportScript = (() => {
     "hero": parse,
     "cards": parse2,
     "columns": parse3,
-    "service-grid": parse4
+    "service-grid": parse4,
+    "video-text": parse5
   };
   var PAGE_TEMPLATE = {
     name: "homepage",
@@ -439,10 +501,15 @@ var CustomImportScript = (() => {
         ]
       },
       {
+        name: "video-text",
+        instances: [
+          "section.section--video--two-column"
+        ]
+      },
+      {
         name: "columns",
         instances: [
           "section.section--bgcolor-light-gray .editor-template.row:has(.span-7-d)",
-          "section.section--video--two-column",
           "section.section--bgcolor-light-gray .editor-template.row:has(.span-4-d)"
         ]
       }
@@ -485,7 +552,7 @@ var CustomImportScript = (() => {
         name: "Video and Text",
         selector: "#block-ul-com-theme-mainpagecontent > section:nth-child(4)",
         style: "light-gray",
-        blocks: ["columns"],
+        blocks: ["video-text"],
         defaultContent: []
       },
       {

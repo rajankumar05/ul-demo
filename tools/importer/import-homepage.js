@@ -5,6 +5,7 @@ import heroParser from './parsers/hero.js';
 import cardsParser from './parsers/cards.js';
 import columnsParser from './parsers/columns.js';
 import serviceGridParser from './parsers/service-grid.js';
+import videoTextParser from './parsers/video-text.js';
 
 import ulCleanupTransformer from './transformers/ul-cleanup.js';
 import ulSectionsTransformer from './transformers/ul-sections.js';
@@ -14,6 +15,7 @@ const parsers = {
   'cards': cardsParser,
   'columns': columnsParser,
   'service-grid': serviceGridParser,
+  'video-text': videoTextParser,
 };
 
 const PAGE_TEMPLATE = {
@@ -44,10 +46,15 @@ const PAGE_TEMPLATE = {
       ]
     },
     {
+      name: 'video-text',
+      instances: [
+        'section.section--video--two-column'
+      ]
+    },
+    {
       name: 'columns',
       instances: [
         'section.section--bgcolor-light-gray .editor-template.row:has(.span-7-d)',
-        'section.section--video--two-column',
         'section.section--bgcolor-light-gray .editor-template.row:has(.span-4-d)'
       ]
     }
@@ -90,7 +97,7 @@ const PAGE_TEMPLATE = {
       name: 'Video and Text',
       selector: '#block-ul-com-theme-mainpagecontent > section:nth-child(4)',
       style: 'light-gray',
-      blocks: ['columns'],
+      blocks: ['video-text'],
       defaultContent: []
     },
     {
