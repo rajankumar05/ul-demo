@@ -23,7 +23,7 @@ export default function decorate(block) {
         embed.src = videoUrl.replace('/embed/medias/', '/embed/iframe/').replace('.m3u8', '');
         embed.setAttribute('allowfullscreen', '');
         embed.setAttribute('allow', 'autoplay; fullscreen');
-        embed.title = 'Video';
+        embed.title = 'On the cutting edge of safety - UL Solutions video';
         iframe.append(embed);
         videoCol.append(iframe);
       } else {

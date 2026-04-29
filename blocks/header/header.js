@@ -100,6 +100,7 @@ function createSearch(nav) {
   searchForm.className = 'nav-search-form';
   searchForm.action = '/search';
   searchForm.method = 'get';
+  searchForm.setAttribute('role', 'search');
 
   const searchInput = document.createElement('input');
   searchInput.type = 'search';
