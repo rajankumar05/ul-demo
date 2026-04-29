@@ -11,13 +11,12 @@
   gap: 15px;
 }
 
-/* each card — white bg, border, 60px bottom padding like spotlight-cards */
+/* each card — white bg, border, flex column to push CTA to bottom */
 .feature-cards .feature-card {
   display: flex;
   flex-direction: column;
   background-color: var(--white);
   border: 1px solid #e2e2e2;
-  padding-bottom: 60px;
 }
 
 /* image header — gray placeholder bg, fixed height, cover */
@@ -34,9 +33,12 @@
   display: block;
 }
 
-/* text body — padded area below image */
+/* text body — padded area below image, grows to fill card */
 .feature-cards .feature-card-body {
   padding: 24px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* title — h4 size */
@@ -57,6 +59,12 @@
   line-height: 1.66;
   color: var(--text-color);
   margin: 0 0 15px;
+}
+
+/* push last paragraph (CTA link) to bottom of card */
+.feature-cards .feature-card-body p:last-child {
+  margin-top: auto;
+  padding-top: 15px;
 }
 
 /* CTA — red outline button, block display */
