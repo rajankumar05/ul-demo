@@ -93,29 +93,30 @@ var CustomImportScript = (() => {
       const ctaLinks = Array.from(item.querySelectorAll("a")).filter(
         (a) => a.textContent.trim()
       );
-      if (image) {
-        cells.push([image]);
-      }
+      const imageCell = document.createElement("div");
+      if (image) imageCell.append(image);
+      const bodyCell = document.createElement("div");
       if (title) {
+        const h = document.createElement("p");
         const strong = document.createElement("strong");
         strong.textContent = title.textContent.trim();
-        cells.push([strong]);
+        h.append(strong);
+        bodyCell.append(h);
       }
-      const contentCell = [];
       descParagraphs.forEach((p) => {
-        const descP = document.createElement("p");
-        descP.textContent = p.textContent.trim();
-        contentCell.push(descP);
+        const para = document.createElement("p");
+        para.textContent = p.textContent.trim();
+        bodyCell.append(para);
       });
       ctaLinks.forEach((link) => {
         const a = document.createElement("a");
         a.href = link.getAttribute("href") || "";
         a.textContent = link.textContent.trim();
-        contentCell.push(a);
+        const p = document.createElement("p");
+        p.append(a);
+        bodyCell.append(p);
       });
-      if (contentCell.length > 0) {
-        cells.push(contentCell);
-      }
+      cells.push([imageCell, bodyCell]);
     });
     const block = WebImporter.Blocks.createBlock(document, { name: "cards", cells });
     element.replaceWith(block);
