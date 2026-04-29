@@ -61,12 +61,14 @@
   text-decoration: underline;
 }
 
-/* black outline button — for expert CTA "Meet the experts" */
+/* black outline button — single-link columns (UL.com button--black-outline) */
+.columns > div > div > p:only-child > a:only-child:any-link,
 .columns a.button:any-link {
   border: 1px solid var(--black);
   color: var(--black);
   background-color: transparent;
   padding: 12px 48px;
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
   font-weight: 400;
   letter-spacing: 1.4px;
@@ -76,12 +78,15 @@
   display: inline-block;
   text-align: center;
   transition: 0.3s ease-out;
+  white-space: nowrap;
 }
 
+.columns > div > div > p:only-child > a:only-child:any-link:hover,
 .columns a.button:any-link:hover {
   background-color: var(--black);
   border-color: var(--black);
   color: var(--white);
+  text-decoration: none;
 }
 
 /* desktop: side-by-side columns */

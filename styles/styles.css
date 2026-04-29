@@ -326,8 +326,7 @@ main > .section:first-of-type {
 /* centered section intro — heading + subtitle above blocks (UL.com pattern) */
 main .section > .default-content-wrapper:first-child:has(+ .cards-wrapper) {
   text-align: center;
-  max-width: 900px;
-  margin: 0 auto 20px;
+  margin-bottom: 20px;
 }
 
 /* section metadata — light-gray background */

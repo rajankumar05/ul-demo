@@ -1,3 +1,8 @@
+/* space between consecutive cards blocks (row gap from original) */
+.cards-wrapper + .cards-wrapper {
+  margin-top: 30px;
+}
+
 /* cards block */
 .cards > ul {
   list-style: none;
